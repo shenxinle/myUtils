@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            div.pagepiling {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+            div.pagepiling > div.section {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            div.section1 {
+                background-color: #f00;
+                z-index: 1;
+            }
+            div.section2 {
+                background-color: #ff0;
+            }
+            div.section3 {
+                background-color: #0f0;
+            }
+            div.section4 {
+                background-color: #00f;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pagepiling">
+            <div class="section section1"></div>
+            <div class="section section2"></div>
+            <div class="section section3"></div>
+            <div class="section section4"></div>
+        </div>
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../jQueryUtils.js"></script>
+        <script>
+            $(function () {
+                $('.pagepiling').pagepiling();
+            })
+        </script>
+    </body>
+</html>
