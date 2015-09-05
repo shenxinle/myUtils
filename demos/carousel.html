@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            body, ul, li{
+                margin: 0;
+                padding: 0;
+            }
+            .carousel {
+                width: 600px;
+                height: 400px;
+                overflow: auto;
+                margin: 0 auto;
+            }
+            .carousel ul {
+                list-style: none;
+            }
+            .carousel li {
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="carousel">
+            <ul>
+                <li>
+                    <img src="imgs/001.jpg">
+                </li>
+                <li>
+                    <img src="imgs/002.jpg">
+                </li>
+                <li>
+                    <img src="imgs/003.jpg">
+                </li>
+                <li>
+                    <img src="imgs/004.jpg">
+                </li>
+            </ul>
+        </div>
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../jQueryUtils.js"></script>
+        <script>
+            var carousel = $('.carousel').carousel();
+        </script>
+    </body>
+</html>
