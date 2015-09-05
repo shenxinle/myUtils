@@ -21,12 +21,12 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部
 使用
 <pre>
     html:
-    <div class="carousel">
-        <ul>
-            <li><img src="imgs/001.jpg"></li>
-            <li><img src="imgs/002.jpg"></li>
-            <li><img src="imgs/003.jpg"></li>
-            <li><img src="imgs/004.jpg"></li>
+    &lt;div class="carousel">
+        &lt;ul>
+            &lt;li>&lt;img src="imgs/001.jpg"></li>
+            &lt;li>&lt;img src="imgs/002.jpg"></li>
+            &lt;li>&lt;img src="imgs/003.jpg"></li>
+            &lt;li>&lt;img src="imgs/004.jpg"></li>
         </ul>
     </div>
 
