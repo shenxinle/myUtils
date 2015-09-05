@@ -19,6 +19,7 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部
 轮播图组件
 
 使用
+<pre>
     html:
     <div class="carousel">
         <ul>
@@ -55,6 +56,7 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部
         interval: true,     // 自动轮播
         hoverStop: false    // 自动轮播时鼠标移上去是否暂停轮播
     });
+</pre>
 
 返回 prev/next 方法用于自定义切换到上一幅/下一幅画面
 
