@@ -2,7 +2,7 @@
 
 ### jQuery.stickUp.js
 
-document 滚动时让目标元素 fixed 在浏览器窗口顶部
+document 滚动时让目标元素 fixed 在浏览器窗口顶部 [demo](http://shenxinle.github.io/myUtils/demos/stickUp.html)
 
 使用
 
@@ -16,7 +16,7 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部
 
 ### jQuery.carousel.js
 
-轮播图组件
+轮播图组件 [demo](http://shenxinle.github.io/myUtils/demos/carousel.html)
 
 使用
 <pre>
@@ -27,8 +27,8 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部
             &lt;li>&lt;img src="imgs/002.jpg"></li>
             &lt;li>&lt;img src="imgs/003.jpg"></li>
             &lt;li>&lt;img src="imgs/004.jpg"></li>
-        </ul>
-    </div>
+        &lt;/ul>
+    &lt;/div>
 
     css:
     .carousel {
@@ -62,7 +62,7 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部
 
 ### jQuery.pagepiling.js 
 
-滚动翻页组件
+滚动翻页组件 [demo](http://shenxinle.github.io/myUtils/demos/pagepiling.html)
 
 使用
 
