@@ -88,7 +88,7 @@
         });
 
         // indicator
-        if(indicator) {console.log('hi');
+        if(indicator) {
             // indicator initialize
             var indicator = document.createElement('ul');
             var li = document.createElement('li');
