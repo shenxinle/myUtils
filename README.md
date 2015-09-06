@@ -1,4 +1,4 @@
-# jQuery组件
+## jQuery组件
 
 ### jQuery.stickUp.js
 
@@ -19,16 +19,16 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部 [demo](http://s
 轮播图组件 [demo](http://shenxinle.github.io/myUtils/demos/carousel.html)
 
 使用
-<pre>
+
     html:
-    &lt;div class="carousel">
-        &lt;ul>
-            &lt;li>&lt;img src="imgs/001.jpg"></li>
-            &lt;li>&lt;img src="imgs/002.jpg"></li>
-            &lt;li>&lt;img src="imgs/003.jpg"></li>
-            &lt;li>&lt;img src="imgs/004.jpg"></li>
-        &lt;/ul>
-    &lt;/div>
+    <div class="carousel">
+        <ul>
+            <li><img src="imgs/001.jpg"></li>
+            <li><img src="imgs/002.jpg"></li>
+            <li><img src="imgs/003.jpg"></li>
+            <li><img src="imgs/004.jpg"></li>
+        </ul>
+    </div>
 
     css:
     .carousel {
@@ -56,7 +56,6 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部 [demo](http://s
         interval: true,     // 自动轮播
         hoverStop: false    // 自动轮播时鼠标移上去是否暂停轮播
     });
-</pre>
 
 返回 prev/next 方法用于自定义切换到上一幅/下一幅画面
 
@@ -96,4 +95,14 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部 [demo](http://s
     <script src="../src/jQuery.pagepiling.js"></script>
     $(function () {
         $('.pagepiling').pagepiling();
+    });
+
+### jQuery.headRoom.js
+
+向下滚动时隐藏 fixed header nav, 向上滚动时显示出来 [demo](http://shenxinle.github.io/myUtils/demos/headRoom.html)
+
+使用
+
+    $(function () {
+        $('.header').headRoom();
     });

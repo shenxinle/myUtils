@@ -1,5 +1,7 @@
 (function ($) {
-
+    /*
+    *  向下滚动时隐藏 fixed header nav, 向上滚动时显示出来
+    */
     $.fn.headRoom = function () {
         var $this = this,
             offsetLeft = $this.offset().left,
