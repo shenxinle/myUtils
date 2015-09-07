@@ -23,14 +23,16 @@
         }
 
         $(window).on('scroll', function () {
+            // console.log('hi');
             if(imgs.length > 0) {
                 loadVisibleImgs();
-                console.log(imgs);
+                // console.log(imgs);
+            } else {
+                $(window).off('scroll', arguments.callee);
             }
         });
         loadVisibleImgs();
 
     }
 
-
-}(jQuery));
+}(window.jQuery || window.Zepto));
