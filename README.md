@@ -5,6 +5,7 @@
 * [jQuery.pagepiling.js](#user-content-jquerypagepilingjs)
 * [jQuery.headRoom.js](#user-content-jqueryheadroomjs)
 * [lazyload.js](#user-content-lazyloadjs)
+* [m.carousel.js](#user-content-mcarouseljs)
 
 ### jQuery.stickUp.js
 
@@ -122,3 +123,44 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部 [demo](http://s
     <img src="imgs/placeholder.jpg" data-src="imgs/001.jpg" >
 
     $('img[data-src]').lazyload();
+
+### m.carousel.js
+
+基于 Zepto 的移动端轮播图组件 [demo](http://shenxinle.github.io/myUtils/demos/m.carousel.html)
+
+使用
+
+    html:
+    <div class="carousel">
+        <ul>
+            <li><img src="imgs/001.jpg"></li>
+            <li><img src="imgs/002.jpg"></li>
+            <li><img src="imgs/003.jpg"></li>
+            <li><img src="imgs/004.jpg"></li>
+        </ul>
+    </div>
+
+    css:
+    .carousel {
+        width: 20rem;
+        height: 14rem;
+        overflow: auto;
+        margin: 0 auto;
+    }
+    .carousel ul {
+        list-style: none;
+    }
+    .carousel li {
+        float: left;
+    }
+
+    js:
+    <script src="../bower_components/zepto/zepto.min.js"></script>
+    <script src="../src/m.carousel.js"></script>
+
+    var carousel = $('.carousel').carousel({
+        speed: 300,     // 速度（ms）
+        delay: 3000,    // 轮播时间间隔（ms）
+        indicator: true,    // 是否显示指示图标
+        interval: true     // 自动轮播
+    });
