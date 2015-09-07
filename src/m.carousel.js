@@ -72,61 +72,110 @@
             delta = {},
             swipeDir;
 
-        $this.find('ul.carousel-inner')
-            .on('touchstart', function (e) {
-                // console.log(e);
-                start.x = e.touches[0].clientX;
-                start.y = e.touches[0].clientY;
-                start.time = (new Date()).getTime();
-            })
-            .on('touchmove', function (e) {
-                end.x = e.touches[0].clientX;
-                end.y = e.touches[0].clientY;
-                end.time = (new Date()).getTime();
-                delta.x = end.x - start.x;
-                delta.y = end.y - start.y;
-                delta.time = end.time - start.time;
+        // binding touch events
+        $this.find('ul.carousel-inner').on('touchstart', touchstart);
 
-                swipeDir = Math.abs(delta.x) > Math.abs(delta.y) ? (delta.x > 0 ? 'swipeRight' : 'swipeLeft') : (delta.y > 0 ? 'swipeTop' : 'swipeBottom');
+        function touchstart(e) {
+            if(moving) {
+                return;
+            }
+            if(onInterval) {
+                clearInterval(interval);
+                onInterval = false;
+            }
+            // console.log(e);
+            start.x = e.touches[0].clientX;
+            start.y = e.touches[0].clientY;
+            start.time = (new Date()).getTime();
 
-                if(swipeDir === 'swipeRight' || swipeDir === 'swipeLeft') {
-                    if(marginLeft + delta.x < 0 && marginLeft + delta.x > (1-cCount)*cWidth) {
-                        $(this).css('margin-left', marginLeft + delta.x);
-                    }
+            $(this).on('touchmove', touchmove)
+                .on('touchend', touchend);
+        }
+
+        function touchmove(e) {
+            end.x = e.touches[0].clientX;
+            end.y = e.touches[0].clientY;
+            end.time = (new Date()).getTime();
+            delta.x = end.x - start.x;
+            delta.y = end.y - start.y;
+            delta.time = end.time - start.time;
+
+            swipeDir = Math.abs(delta.x) > Math.abs(delta.y) ? (delta.x > 0 ? 'swipeRight' : 'swipeLeft') : (delta.y > 0 ? 'swipeTop' : 'swipeBottom');
+
+            if(swipeDir === 'swipeRight' || swipeDir === 'swipeLeft') {
+                if(marginLeft + delta.x < 0 && marginLeft + delta.x > (1-cCount)*cWidth) {
+                    $(this).css('margin-left', marginLeft + delta.x);
                 }
-            })
-            .on('touchend', function (e) {
-                var condition1,
-                    condition2,
-                    condition3,
-                    sign;
-                var the = $(this);
+            }
+        }
 
-                if(swipeDir === 'swipeRight' || swipeDir === 'swipeLeft') {
-                    the.css({
-                        '-webkit-transition': 'margin-left ' + o.speed + 's ease-in-out',
-                        'transition': 'margin-left ' + o.speed + 's ease-in-out'
-                    });
+        function touchend(e) {
+            var condition1,
+                condition2,
+                condition3,
+                sign;
 
-                    sign = swipeDir === 'swipeRight' ? 1 : -1;
-                    condition1 = Math.abs(delta.x) > cWidth / 2;
-                    condition2 = Math.abs(delta.x) > cWidth / 10 && delta.time < 200;
-                    condition3 = (marginLeft + sign*cWidth <= 0) && (marginLeft + sign*cWidth >= (1-cCount)*cWidth);
-                    // console.log(condition1, condition2, condition3, marginLeft + sign*cWidth);
+            if(swipeDir === 'swipeRight' || swipeDir === 'swipeLeft') {
+                sign = swipeDir === 'swipeRight' ? 1 : -1;
+                condition1 = Math.abs(delta.x) > cWidth / 2;
+                condition2 = Math.abs(delta.x) > cWidth / 10 && delta.time < 200;
+                condition3 = (marginLeft + sign*cWidth <= 0) && (marginLeft + sign*cWidth >= (1-cCount)*cWidth);
+                // console.log(condition1, condition2, condition3, marginLeft + sign*cWidth);
 
-                    if((condition1 || condition2) && condition3) {
-                        marginLeft = marginLeft + sign*cWidth;
-                    }
-                    the.css('margin-left', marginLeft);
-                    setTimeout(function () {
-                        the.css({
-                            '-webkit-transition': '',
-                            'transition': ''
-                        });
-                    }, o.speed * 1000);
+                if((condition1 || condition2) && condition3) {
+                    toPos(marginLeft + sign*cWidth);
+                } else {
+                    toPos(marginLeft);
                 }
+            }
+
+            // unbinding touchmove and touchend
+            $(this).off('touchmove', touchmove)
+                .off('touchend', touchend);
+
+            autoInterval();
+        }
+
+        function toPos(marginLeftPos) {
+            var carouselInner = $this.find('ul.carousel-inner');
+
+            carouselInner.css({
+                '-webkit-transition': 'margin-left ' + o.speed + 's ease-in-out',
+                'transition': 'margin-left ' + o.speed + 's ease-in-out'
             });
 
+            // update indicator bgc
+            if(marginLeft !== marginLeftPos) {
+                $this.find('ul.indicator li').eq(Math.abs(parseInt(marginLeft / cWidth))).css('background-color', indicatorBgc);
+                $this.find('ul.indicator li').eq(Math.abs(parseInt(marginLeftPos / cWidth))).css('background-color', indicatorBgcOn);
+            }
 
+            marginLeft = marginLeftPos;
+            moving = true;
+            carouselInner.css('margin-left', marginLeft);
+            setTimeout(function () {
+                carouselInner.css({
+                    '-webkit-transition': '',
+                    'transition': ''
+                });
+                moving = false;
+            }, o.speed * 1000);
+        }
+
+        function autoInterval() {
+            if(o.interval && cCount > 1) {
+                interval = setInterval(function () {
+                    var index = Math.abs(parseInt(marginLeft / cWidth)),
+                        next = (index + 1) % cCount;
+
+                    toPos(-next*cWidth);
+                }, o.delay * 1000);
+
+                onInterval = true;
+            }
+        }
+
+        // autoplay
+        autoInterval();
     }
 }(window.Zepto));
