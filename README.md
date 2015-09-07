@@ -1,4 +1,10 @@
-## jQuery组件
+## 一些基于 jQuery / Zepto 的组件
+
+* [jQuery.stickUp.js](#user-content-jquerystickupjs)
+* [jQuery.carousel.js](#user-content-jquerycarouseljs)
+* [jQuery.pagepiling.js](#user-content-jquerypagepilingjs)
+* [jQuery.headRoom.js](#user-content-jqueryheadroomjs)
+* [lazyload.js](#user-content-lazyloadjs)
 
 ### jQuery.stickUp.js
 
@@ -106,3 +112,13 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部 [demo](http://s
     $(function () {
         $('.header').headRoom();
     });
+
+### lazyload.js
+
+基于 jQuery / Zepto 图片懒加载组件 [pc demo](http://shenxinle.github.io/myUtils/demos/lazyload.html) / [mobile demo](http://shenxinle.github.io/myUtils/demos/m.lazyload.html)
+
+使用
+
+    <img src="imgs/placeholder.jpg" data-src="imgs/001.jpg" >
+
+    $('img[data-src]').lazyload();
