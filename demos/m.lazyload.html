@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lazyload</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            display: block;
+            width: 600px;
+            height: 400px;
+            margin: 0 auto 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="imgs/placeholder.jpg" data-src="imgs/001.jpg" >
+        <img src="imgs/placeholder.jpg" data-src="imgs/002.jpg" >
+        <img src="imgs/placeholder.jpg" data-src="imgs/003.jpg" >
+        <img src="imgs/placeholder.jpg" data-src="imgs/004.jpg" >
+    </div>
+    <img src="imgs/placeholder.jpg" data-src="imgs/001.jpg?1" >
+    <img src="imgs/placeholder.jpg" data-src="imgs/002.jpg?2" >
+    <img src="imgs/placeholder.jpg" data-src="imgs/003.jpg?3" >
+    <img src="imgs/placeholder.jpg" data-src="imgs/004.jpg?4" >
+
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../src/jQuery.lazyload.js"></script>
+    <script>
+        $(function () {
+            $('img[data-src]').lazyload();
+        })
+    </script>
+</body>
+</html>
