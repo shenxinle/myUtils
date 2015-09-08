@@ -83,7 +83,7 @@
                 clearInterval(interval);
                 onInterval = false;
             }
-            // console.log(e);
+
             start.x = e.touches[0].clientX;
             start.y = e.touches[0].clientY;
             start.time = (new Date()).getTime();
@@ -93,6 +93,8 @@
         }
 
         function touchmove(e) {
+            e.preventDefault();
+
             end.x = e.touches[0].clientX;
             end.y = e.touches[0].clientY;
             end.time = (new Date()).getTime();
@@ -117,8 +119,8 @@
 
             if(swipeDir === 'swipeRight' || swipeDir === 'swipeLeft') {
                 sign = swipeDir === 'swipeRight' ? 1 : -1;
-                condition1 = Math.abs(delta.x) > cWidth / 2;
-                condition2 = Math.abs(delta.x) > cWidth / 10 && delta.time < 200;
+                condition1 = Math.abs(delta.x) > cWidth / 2.5;
+                condition2 = Math.abs(delta.x) > cWidth / 10 && delta.time < 300;
                 condition3 = (marginLeft + sign*cWidth <= 0) && (marginLeft + sign*cWidth >= (1-cCount)*cWidth);
                 // console.log(condition1, condition2, condition3, marginLeft + sign*cWidth);
 
