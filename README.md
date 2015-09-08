@@ -159,8 +159,8 @@ document 滚动时让目标元素 fixed 在浏览器窗口顶部 [demo](http://s
     <script src="../src/m.carousel.js"></script>
 
     var carousel = $('.carousel').carousel({
-        speed: 300,     // 速度（ms）
-        delay: 3000,    // 轮播时间间隔（ms）
+        speed: 0.3,     // 速度（s）
+        delay: 3,    // 轮播时间间隔（s）
         indicator: true,    // 是否显示指示图标
         interval: true     // 自动轮播
     });
