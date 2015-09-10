@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css" media="screen">
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            div.cell {
+                margin: 0 auto 10px;
+                width: 100px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                background-color: #aaa;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="infinite-scroll">
+            <div class="cell"> 1 </div>
+        </div>
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../src/infiniteScroll.js"></script>
+        <script>
+            $(function () {
+                $('.infinite-scroll').infiniteScroll();
+            });
+        </script>
+    </body>
+</html>

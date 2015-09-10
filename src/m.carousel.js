@@ -79,10 +79,6 @@
             if(moving) {
                 return;
             }
-            if(onInterval) {
-                clearInterval(interval);
-                onInterval = false;
-            }
 
             start.x = e.touches[0].clientX;
             start.y = e.touches[0].clientY;
@@ -90,10 +86,10 @@
 
             $(this).on('touchmove', touchmove)
                 .on('touchend', touchend);
+            // $('body > div').eq(1).append('<p>start</p>');
         }
 
         function touchmove(e) {
-            e.preventDefault();
 
             end.x = e.touches[0].clientX;
             end.y = e.touches[0].clientY;
@@ -105,10 +101,17 @@
             swipeDir = Math.abs(delta.x) > Math.abs(delta.y) ? (delta.x > 0 ? 'swipeRight' : 'swipeLeft') : (delta.y > 0 ? 'swipeTop' : 'swipeBottom');
 
             if(swipeDir === 'swipeRight' || swipeDir === 'swipeLeft') {
+                if(onInterval) { // 从 touchstart 移到 touchmove 左右滑中， fix X5 竖直滑动时 touchend 丢失导致的自动轮播失效
+                    clearInterval(interval);
+                    onInterval = false;
+                }
+                e.preventDefault(); // fix X5 死机
+
                 if(marginLeft + delta.x < 0 && marginLeft + delta.x > (1-cCount)*cWidth) {
                     $(this).css('margin-left', marginLeft + delta.x);
                 }
             }
+            // $('body > div').eq(1).append('<p>move</p>');
         }
 
         function touchend(e) {
@@ -131,11 +134,14 @@
                 }
             }
 
+            // $('body > div').eq(1).append('<p>end</p>');
+            if(!onInterval) {
+                autoInterval();
+            }
+
             // unbinding touchmove and touchend
             $(this).off('touchmove', touchmove)
                 .off('touchend', touchend);
-
-            autoInterval();
         }
 
         function toPos(marginLeftPos) {
